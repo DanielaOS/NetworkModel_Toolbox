@@ -106,29 +106,27 @@ Order = np.hstack((Order, np.arange(N-1, 0, -2)))
 
 fig, axs = plt.subplots(1, 3, figsize=(15, 8))
 ax = axs[0]
-# colormap(jet)
-ax.pcolormesh(C[Order, :][:, Order])
-
+df = ax.pcolormesh(C[Order, :][:, Order])
 ax.set_xlabel('Nodes')
 ax.set_ylabel('Nodes')
 ax.set_title('Coupling Matrix')
 ax.axis('square')
-#plt.colorbar()
+fig.colorbar(df,ax = axs[0], shrink = 0.5)
 
 ax = axs[1]
-ax.pcolormesh(D[Order, :][:, Order])
+df = ax.pcolormesh(D[Order, :][:, Order])
 ax.set_xlabel('Nodes')
 ax.set_ylabel('Nodes')
 ax.set_title('Distance Matrix')
 ax.axis('square')
-#plt.colorbar()
+fig.colorbar(df,ax = axs[1],shrink = 0.5)
 
 ax = axs[2]
 X = np.sin(Phases_Save)
 FC = (X[:, None, :] * X[None, :, :]).mean(axis=-1)
-ax.pcolormesh(FC[Order, :][:, Order])
+df = ax.pcolormesh(FC[Order, :][:, Order])
 ax.set_xlabel('Nodes')
 ax.set_ylabel('Nodes')
 ax.set_title('Correlation Matrix')
 ax.axis('square');
-#plt.colorbar()
+fig.colorbar(df,ax = axs[2],shrink = 0.5)
